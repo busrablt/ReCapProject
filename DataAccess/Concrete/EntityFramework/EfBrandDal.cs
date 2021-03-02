@@ -9,7 +9,7 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfBrandCar : IBrandDal
+    public class EfBrandDal : IBrandDal
     {
         public void Add(Brand entity)
         {
