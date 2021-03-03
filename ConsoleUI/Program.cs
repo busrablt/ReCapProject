@@ -10,10 +10,8 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            InsertMetod();
-            //CarDetailsDtoMethod();
-            
-
+            //InsertMetod();
+            CarDetailsDtoMethod();
         }
 
         private static void CarDetailsDtoMethod()
@@ -21,7 +19,7 @@ namespace ConsoleUI
             CarManager carManager = new CarManager(new EfCarDal());
             foreach (var car in carManager.GetCarDetails())
             {
-                Console.WriteLine($"{car.BrandName}/ {car.Id} / {car.ColorName} / {car.DailyPrice}");
+                Console.WriteLine(car.CarName + " " + car.ColorName +" "+car.BrandName+" "+car.DailyPrice);
 
             }
         }
