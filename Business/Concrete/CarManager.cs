@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Core.Results.Abstract;
+using Core.Results.Concreate;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -16,48 +18,39 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public void Add(Car car)
+        public IResult Add(Car car)
         {
             if(car.Descriptions.Length>2 && car.DailyPrice>0)
             {
-
                 _carDal.Add(car);
-                Console.WriteLine("New car added");
+                return new SuccessResult("New car added");
             }
             else
             {
-                Console.WriteLine("The car name must be at least 2 characters");
+                return new ErrorResult("The car name must be at least 2 characters");
             }
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
             _carDal.Delete(car);
+            return new SuccessResult("The car deleted");
         }
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
-            return _carDal.GetAll();
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll());
         }
 
-        public List<CarDetailsDto> GetCarDetails()
+        public IDataResult<List<CarDetailsDto>> GetCarDetails()
         {
-            return _carDal.GetCarDetails();
+            return new SuccessDataResult<List<CarDetailsDto>>( _carDal.GetCarDetails());
         }
 
-        public List<Car> GetCarsByBrandId(int BrandId)
-        {
-            return _carDal.GetAll(p => p.BrandId == BrandId);
-        }
-
-        public List<Car> GetCarsByColordId(int ColorId)
-        {
-            return _carDal.GetAll(p => p.ColorId == ColorId);
-        }
-
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
             _carDal.Update(car);
+            return new SuccessResult("Update completed successfully");
         }
     }
 }
