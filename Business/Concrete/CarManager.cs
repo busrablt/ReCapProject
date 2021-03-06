@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constant;
 using Core.Results.Abstract;
 using Core.Results.Concreate;
 using DataAccess.Abstract;
@@ -23,18 +24,18 @@ namespace Business.Concrete
             if(car.Descriptions.Length>2 && car.DailyPrice>0)
             {
                 _carDal.Add(car);
-                return new SuccessResult("New car added");
+                return new SuccessResult(Messages.CarAdded);
             }
             else
             {
-                return new ErrorResult("The car name must be at least 2 characters");
+                return new ErrorResult(Messages.CarDailyPriceInvalid);
             }
         }
 
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
-            return new SuccessResult("The car deleted");
+            return new SuccessResult(Messages.CarDeleted);
         }
 
         public IDataResult<List<Car>> GetAll()
@@ -50,7 +51,7 @@ namespace Business.Concrete
         public IResult Update(Car car)
         {
             _carDal.Update(car);
-            return new SuccessResult("Update completed successfully");
+            return new SuccessResult(Messages.CarUpdated);
         }
     }
 }

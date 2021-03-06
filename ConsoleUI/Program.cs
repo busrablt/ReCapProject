@@ -10,29 +10,42 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            //InsertMetod();
-            CarDetailsDtoMethod();
+            //CarDetailsDtoMethod();
+            CarManagerMethod();
+
+        }
+
+        private static void CarManagerMethod()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+            var result = carManager.GetAll();
+            Car newCar1 = new Car { BrandId = 1, ColorId = 2,CarName="Toyota" ,DailyPrice = 205000, ModelYear = 2021, Descriptions = "Otomatik Dizel" };
+            carManager.Add(newCar1);
+            if (result.Success == true)
+            {
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine(car.CarName + "---" + car.Descriptions);
+                }
+            }
+
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
         }
 
         private static void CarDetailsDtoMethod()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetCarDetails())
+            var result = carManager.GetCarDetails();
+            foreach (var car in result.Data)
             {
                 Console.WriteLine(car.CarName + "-" + car.ColorName +"-"+car.BrandName+"-"+car.DailyPrice);
 
             }
         }
 
-        private static void InsertMetod()
-        {
-            CarManager carManager = new CarManager(new EfCarDal());
-            Car newCar1 = new Car { BrandId = 1, ColorId = 2, DailyPrice = 205000, ModelYear = 2021, Descriptions = "Otomatik Dizel" };
-            carManager.Add(newCar1);
-            foreach (var car in carManager.GetAll())
-            {
-                Console.WriteLine(car.Descriptions);
-            }
-        }
+        
     }
 }
