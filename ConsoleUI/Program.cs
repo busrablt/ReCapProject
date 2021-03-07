@@ -19,7 +19,7 @@ namespace ConsoleUI
         {
             CarManager carManager = new CarManager(new EfCarDal());
             var result = carManager.GetAll();
-            Car newCar1 = new Car { BrandId = 1, ColorId = 2,CarName="Toyota" ,DailyPrice = 205000, ModelYear = 2021, Descriptions = "Otomatik Dizel" };
+            Car newCar1 = new Car { BrandId = 2, ColorId = 2,CarName="Toyotaa" ,DailyPrice = 205000, ModelYear = 2021, Descriptions = "Otomatik " };
             carManager.Add(newCar1);
             if (result.Success == true)
             {
