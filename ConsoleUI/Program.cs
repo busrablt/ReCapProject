@@ -11,7 +11,24 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             //CarDetailsDtoMethod();
-            CarManagerMethod();
+            // CarManagerMethod();
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            Rental rental1 = new Rental { CarId = 1,CustomerId=2, RentDate = DateTime.Now, ReturnDate = DateTime.Today };
+            rentalManager.Add(rental1);
+            var result = rentalManager.GetAll();
+            if (result.Success == true)
+            {
+                foreach (var rental in result.Data)
+                {
+                    Console.WriteLine(rental.RentDate);
+                }
+            }
+
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+
 
         }
 

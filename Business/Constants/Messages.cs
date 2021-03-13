@@ -24,6 +24,13 @@ namespace Business.Constant
         public static string ColorListed = "Brands listed";
         public static string ColorListedById = "Colors listed by id number";
 
+        public static string RentalAdded = "Rental information added";
+        public static string RentalInvalid = "Rent another car please";
+        public static string RentalListed = "Rental information listed";
+
+
+
+
 
     }
 }

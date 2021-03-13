@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constant;
 using Core.Results.Abstract;
 using Core.Results.Concreate;
 using DataAccess.Abstract;
@@ -21,18 +22,22 @@ namespace Business.Concrete
         {
             if (rental.ReturnDate==null)
             {
-                return new ErrorResult();
+                return new ErrorResult(Messages.RentalInvalid);
             }
             else
             {
                 _rentalDal.Add(rental);
-                return new SuccessResult();
+                return new SuccessResult(Messages.RentalAdded);
             }
         }
 
         public IDataResult<List<Rental>> GetAll()
         {
-            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll());
+            if (DateTime.Now.Hour == 15)
+            {
+                return new ErrorDataResult<List<Rental>>(Messages.MaintenanceTeam);
+            }
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(),Messages.RentalListed);
         }
     }
 }
