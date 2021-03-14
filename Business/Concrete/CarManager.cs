@@ -1,9 +1,10 @@
 ﻿using Business.Abstract;
 using Business.Constant;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcers.FluentValidation;
-using Core.Results.Abstract;
-using Core.Results.Concreate;
+using Core.Utilities.Results.Abstract;
+using Core.Utilities.Results.Concreate;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -21,13 +22,12 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
-            ValidationTool.Validate(new CarValidator(), car);
+            //ValidationTool.Validate(new CarValidator(), car);
             _carDal.Add(car);
             return new SuccessResult(Messages.CarAdded);
-
-
         }
 
         public IResult Delete(Car car)
@@ -51,5 +51,7 @@ namespace Business.Concrete
             _carDal.Update(car);
             return new SuccessResult(Messages.Updated);
         }
+
+    
     }
 }

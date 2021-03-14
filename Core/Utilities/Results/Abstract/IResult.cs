@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Core.Results.Abstract
+namespace Core.Utilities.Results.Abstract
 {
     public interface IResult
     {

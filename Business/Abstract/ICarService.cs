@@ -1,4 +1,4 @@
-﻿using Core.Results.Abstract;
+﻿using Core.Utilities.Results.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
 using System;

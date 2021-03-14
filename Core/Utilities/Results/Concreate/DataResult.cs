@@ -1,9 +1,9 @@
-﻿using Core.Results.Abstract;
+﻿using Core.Utilities.Results.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Core.Results.Concreate
+namespace Core.Utilities.Results.Concreate
 {
     public class DataResult<T> : Result, IDataResult<T>
     {
