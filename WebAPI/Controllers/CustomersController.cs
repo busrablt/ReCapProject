@@ -11,40 +11,40 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ColorsController : ControllerBase
+    public class CustomersController : ControllerBase
     {
-        IColorService _colorService;
-
-        public ColorsController(IColorService colorService)
+        ICustomerService _customerService;
+        public CustomersController(ICustomerService customerService)
         {
-            _colorService = colorService;
+            _customerService = customerService;
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Color color)
+        public IActionResult Add(Customer customer)
         {
-            var result = _colorService.Add(color);
+            var result = _customerService.Add(customer);
             if (result.Success)
             {
                 return Ok(result);
             }
-            return BadRequest(result);
+            return BadRequest(result.Message);
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(Color color)
+        public IActionResult Delete(Customer customer)
         {
-            var result = _colorService.Delete(color);
+            var result = _customerService.Delete(customer);
             if (result.Success)
             {
                 return Ok(result);
             }
-            return BadRequest(result);
+            return BadRequest(result.Message);
         }
-        [HttpGet("getbyid")]
-        public IActionResult GetById(int id)
+
+        [HttpGet("getall")]
+        public IActionResult GetAll()
         {
-            var result = _colorService.GetAllByColorId(id);
+            var result = _customerService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -52,15 +52,15 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getall")]
-        public IActionResult GetAll(int id)
+        [HttpGet("getbyid")]
+        public IActionResult GetAllByCustomerId(int Id)
         {
-            var result = _colorService.GetAll();
+            var result = _customerService.GetAllByCustomerId(Id);
             if (result.Success)
             {
                 return Ok(result);
             }
-            return BadRequest(result);
+            return BadRequest(result.Message);
         }
     }
 }

@@ -31,6 +31,7 @@ namespace WebAPI
         {
             
             services.AddControllers();
+            //IoC
             //services.AddSingleton<ICarService, CarManager>();
             //services.AddSingleton<ICarDal, EfCarDal>();
             //services.AddSingleton<IBrandService, BrandManager>();

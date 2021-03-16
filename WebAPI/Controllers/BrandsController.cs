@@ -39,10 +39,22 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-        [HttpGet("getbyid")]
-        public IActionResult GetById(int id)
+
+        [HttpPost("delete")]
+        public IActionResult Delete(Brand brand)
         {
-            var result = _brandService.GetAllByBrandId(id);
+            var result = _brandService.Delete(brand);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getbyid")]
+        public IActionResult GetById(int Id)
+        {
+            var result = _brandService.GetAllByBrandId(Id);
             if (result.Success)
             {
                 return Ok(result);

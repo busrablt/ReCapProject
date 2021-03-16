@@ -28,6 +28,14 @@ namespace Business.Constant
         public static string RentalInvalid = "Rent another car please";
         public static string RentalListed = "Rental information listed";
 
+        public static string CustomerAdded = "New customer added";
+        public static string CustomerDeleted = "The customer deleted";
+        public static string CustomerListed = "Customers listed";
+        public static string CustomerListedById = "Customers listed by id number";
+
+        public static string UserAdded = "New user added";
+        public static string UserListed = "Users listed";
+        public static string UserListedById = "Users listed by id number";
 
 
 

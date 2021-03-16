@@ -10,7 +10,7 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class RentalManager : IRentalService
+    public class RentalManager:IRentalService
     {
         IRentalDal _rentalDal;
         public RentalManager(IRentalDal rentalDal)
@@ -20,24 +20,13 @@ namespace Business.Concrete
 
         public IResult Add(Rental rental)
         {
-            if (rental.ReturnDate==null)
-            {
-                return new ErrorResult(Messages.RentalInvalid);
-            }
-            else
-            {
-                _rentalDal.Add(rental);
-                return new SuccessResult(Messages.RentalAdded);
-            }
+            _rentalDal.Add(rental);
+            return new SuccessResult(Messages.RentalAdded);
         }
 
         public IDataResult<List<Rental>> GetAll()
         {
-            if (DateTime.Now.Hour == 15)
-            {
-                return new ErrorDataResult<List<Rental>>(Messages.MaintenanceTeam);
-            }
-            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(),Messages.RentalListed);
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(), Messages.RentalListed);
         }
     }
 }
