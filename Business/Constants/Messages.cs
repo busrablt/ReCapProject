@@ -36,9 +36,10 @@ namespace Business.Constant
         public static string UserAdded = "New user added";
         public static string UserListed = "Users listed";
         public static string UserListedById = "Users listed by id number";
-
-
-
-
+        
+        internal static string CarCheckImageLimited="";
+        internal static string CarImagesListed="Card images listed";
+        internal static string CarImageAdded="New car image added";
+        internal static string CarImageDeleted="The car image deleted";
     }
 }
