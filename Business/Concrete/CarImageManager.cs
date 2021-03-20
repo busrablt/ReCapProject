@@ -36,7 +36,7 @@ namespace Business.Concrete
             }
 
             carImage.ImagePath = FileHelper.Add(file);
-            carImage.CarImageDate = DateTime.Now;
+            carImage.ImageDate = DateTime.Now;
             _carImageDal.Add(carImage);
             return new SuccessResult(Messages.CarImageAdded);
         }
@@ -50,7 +50,7 @@ namespace Business.Concrete
 
         public IDataResult<CarImage> Get(int id)
         {
-            return new SuccessDataResult<CarImage>(_carImageDal.Get(p =>p.CarImageId == id));
+            return new SuccessDataResult<CarImage>(_carImageDal.Get(p => p.Id == id));
         }
 
         public IDataResult<List<CarImage>> GetAll()
@@ -62,16 +62,10 @@ namespace Business.Concrete
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult Update(CarImage carImage, IFormFile file)
         {
-            IResult result = BusinessRules.Run(CheckImageLimited(carImage.CarId));
-            if (result != null)
-            {
-                return result;
-            }
-
-            var oldPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\wwwroot")) + _carImageDal.Get(p => p.CarImageId == carImage.CarId).ImagePath;
+            var oldPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\wwwroot")) + _carImageDal.Get(p => p.Id == carImage.CarId).ImagePath;
 
             carImage.ImagePath = FileHelper.Update(oldPath, file);
-            carImage.CarImageDate = DateTime.Now;
+            carImage.ImageDate = DateTime.Now;
             _carImageDal.Update(carImage);
             return new SuccessResult();
 

@@ -13,29 +13,29 @@ namespace Core.Utilities.Helper
         public static string Add(IFormFile file)
         {
             var result = newPath(file);
-            var sourcePath = Path.GetTempFileName();
-            if (file.Length > 0)
+
+            var sourcepath = Path.GetTempFileName();
+
+            using (var stream = new FileStream(sourcepath, FileMode.Create))
             {
-                using (var stream = new FileStream(sourcePath, FileMode.Create))
-                {
-                    file.CopyTo(stream);
-                }
-                File.Move(sourcePath, result.newPath);  
+                file.CopyTo(stream);
             }
+
+            File.Move(sourcepath, result.newPath);
+
             return result.Path2;
         }
 
         public static string Update(string sourcePath, IFormFile file)
         {
             var result = newPath(file);
-            if (sourcePath.Length > 0)
+            using (var stream = new FileStream(result.newPath, FileMode.Create))
             {
-                using (var stream = new FileStream(result.newPath, FileMode.Create))
-                {
-                    file.CopyTo(stream);
-                }
+                file.CopyTo(stream);
             }
+
             File.Delete(sourcePath);
+
             return result.Path2;
         }
 
@@ -49,13 +49,13 @@ namespace Core.Utilities.Helper
         {
             FileInfo ff = new FileInfo(file.FileName);
             string fileExtension = ff.Extension;
-            var newPath = Guid.NewGuid() + fileExtension;
-            string path = Environment.CurrentDirectory + @"\wwwroot\Images";
-            string result = $@"{path}\{newPath}";
-            return (result, $"\\Images\\{newPath}");
+            var newFileName = Guid.NewGuid().ToString("N") + fileExtension;
+            string path12 = @"\wwwroot\Images\";
+            string result = Environment.CurrentDirectory + path12 + newFileName;
+            return (result, $"\\Images\\{newFileName}");
         }
     }
-
+  
 }
 
 
