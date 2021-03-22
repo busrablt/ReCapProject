@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Core.Entities.Concrete;
+using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Business.Constant
@@ -41,5 +43,13 @@ namespace Business.Constant
         internal static string CarImagesListed="Card images listed";
         internal static string CarImageAdded="New car image added";
         internal static string CarImageDeleted="The car image deleted";
+
+        internal static string AuthorizationDenied= "You aren't authorized";
+        internal static string UserAlreadyExists;
+        internal static string SuccessfulLogin;
+        internal static string PasswordError;
+        internal static string UserNotFound;
+        internal static string UserRegistered;
+        internal static string AccessTokenCreated;
     }
 }

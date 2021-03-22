@@ -4,6 +4,7 @@ using System.Security.Claims;
 
 namespace Core.Extensions
 {
+    //This method is used to access the claim from JWT.
     public static class ClaimsPrincipalExtensions
     {
         public static List<string> Claims(this ClaimsPrincipal claimsPrincipal, string claimType)

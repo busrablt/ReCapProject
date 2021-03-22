@@ -9,7 +9,7 @@ namespace Core.Extensions
 {
     public static class ClaimExtensions
     {
-        //With Extension, we can create own methods to an existing object.
+        //We can create own methods to an existing object. This is called extensiom.
         public static void AddEmail(this ICollection<Claim> claims, string email)
         {
             claims.Add(new Claim(JwtRegisteredClaimNames.Email, email));

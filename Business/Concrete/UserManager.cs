@@ -32,9 +32,14 @@ namespace Business.Concrete
             return new SuccessDataResult<List<User>>(_userDal.GetAll(),Messages.UserListed);
         }
 
-        public IDataResult<List<User>> GetAllByUserId(int Id)
+        public IDataResult<List<User>> GetByMail(string email)
         {
-            return new SuccessDataResult<List<User>>(_userDal.GetAll(u => u.UserId == Id));
+            return new SuccessDataResult<List<User>>(_userDal.GetAll(u => u.Email==email));
+        }
+
+        public List<OperationClaim> GetClaims(User user)
+        {
+            return _userDal.GetClaims(user);
         }
     }
 }
