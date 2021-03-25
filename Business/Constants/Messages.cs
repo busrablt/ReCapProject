@@ -15,6 +15,7 @@ namespace Business.Constant
         public static string CarDailyPriceInvalid = "The car name must be at least 2 characters";
         public static string CarDeleted = "The car deleted";
         public static string CarListed = "Cars listed";
+        internal static string ProductAlreadyExists= "The car with this name already exists";
 
         public static string BrandAdded = "New brand added";
         public static string BrandDeleted = "The brand deleted";
@@ -51,5 +52,6 @@ namespace Business.Constant
         public static string SuccessfulLogin = "Successful login";
         public static string UserAlreadyExists = "User already exist";
         public static string AccessTokenCreated = "Created Token";
+        
     }
 }
