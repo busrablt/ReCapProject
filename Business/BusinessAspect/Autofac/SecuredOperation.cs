@@ -2,12 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Core.Utilities.Intercepters;
 using Castle.DynamicProxy;
 using Core.Extensions;
 using Core.Utilities.IoC;
 using Microsoft.Extensions.DependencyInjection;
 using Business.Constant;
+using Core.Utilities.Interceptors;
 
 namespace Business.BusinessAspects.Autofac
 {
