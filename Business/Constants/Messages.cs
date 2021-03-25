@@ -45,11 +45,11 @@ namespace Business.Constant
         internal static string CarImageDeleted="The car image deleted";
 
         internal static string AuthorizationDenied= "You aren't authorized";
-        internal static string UserAlreadyExists;
-        internal static string SuccessfulLogin;
-        internal static string PasswordError;
-        internal static string UserNotFound;
-        internal static string UserRegistered;
-        internal static string AccessTokenCreated;
+        public static string UserRegistered = "User registered";
+        public static string UserNotFound = "User not found";
+        public static string PasswordError = "You entered the password incorrectly";
+        public static string SuccessfulLogin = "Successful login";
+        public static string UserAlreadyExists = "User already exist";
+        public static string AccessTokenCreated = "Created Token";
     }
 }
