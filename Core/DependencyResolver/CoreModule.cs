@@ -17,7 +17,8 @@ namespace Core.DependencyResolver
         {
             serviceCollection.AddMemoryCache(); //IMemoryCache is inject.
             serviceCollection.AddSingleton<ICacheManager, MemoryCacheManager>();
-            serviceCollection.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();  
+            serviceCollection.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            serviceCollection.AddSingleton<Stopwatch>();
         }
     }
 }
