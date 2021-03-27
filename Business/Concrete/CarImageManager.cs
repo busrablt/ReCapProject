@@ -45,9 +45,18 @@ namespace Business.Concrete
 
         public IResult Delete(CarImage carImages)
         {
-            FileHelper.Delete(carImages.ImagePath);
+            var oldpath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\wwwroot")) + _carImageDal.Get(p => p.Id == carImages.Id).ImagePath;
+            IResult result = BusinessRules.Run(FileHelper.Delete(oldpath));
+
+            if (result != null)
+            {
+                return result;
+            }
+
             _carImageDal.Delete(carImages);
             return new SuccessResult(Messages.CarImageDeleted);
+
+            
         }
 
         public IDataResult<CarImage> Get(int id)
