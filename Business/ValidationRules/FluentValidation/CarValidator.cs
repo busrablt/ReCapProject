@@ -11,9 +11,9 @@ namespace Business.ValidationRules.FluentValidation
         public CarValidator()
         {
             RuleFor(c => c.BrandId).NotEmpty();
-            RuleFor(c => c.Descriptions).MinimumLength(4);
+            RuleFor(c => c.Descriptions).MaximumLength(50);
             RuleFor(c => c.DailyPrice).NotEmpty();
-            RuleFor(c => c.DailyPrice).GreaterThan(10000);
+            RuleFor(c => c.DailyPrice).GreaterThan(5000);
         }
     }
 }
