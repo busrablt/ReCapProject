@@ -27,12 +27,12 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        [SecuredOperation("product.add,admin")]
+        [SecuredOperation("car.add,admin")]
         [ValidationAspect(typeof(CarValidator))]
-        [CacheRemoveAspect("IProductService.Get")]
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Add(Car car)
         {
-            IResult result = BusinessRules.Run(CheckIfProductNameExsist(car.CarName));
+            IResult result = BusinessRules.Run(CheckIfCarNameExsist(car.CarName));
             if (result!=null)
             {
                 return result;
@@ -61,31 +61,43 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarListed);
         }
 
+        public IDataResult<List<Car>> GetByBrandId(int brandId)
+        {
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(b => b.BrandId == brandId), Messages.ListedByBrandId);
+        }
+
+        public IDataResult<List<Car>> GetByColorId(int colorId)
+        {
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(b => b.ColorId == colorId), Messages.ListedByColorId);
+        }
+
         public IDataResult<List<CarDetailsDto>> GetCarDetails()
         {
             return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetails());
         }
 
+        public IDataResult<List<CarDetailsDto>> GetCarDetailsById(int carId)
+        {
+            return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetailsById(carId));
+        }
+
         [ValidationAspect(typeof(CarValidator))]
-        [CacheRemoveAspect("IProductService.Get")]
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Update(Car car)
         {
             _carDal.Update(car);
             return new SuccessResult(Messages.Updated);
         }
 
-        private IResult CheckIfProductNameExsist(string carName)
+        private IResult CheckIfCarNameExsist(string carName)
         {
-            //Any() bu şarta uyan data var mı diyip bool döndürür
             var result = _carDal.GetAll(c => c.CarName == carName).Any();
             if (result == true)
             {
-                return new ErrorResult(Messages.ProductAlreadyExists);
+                return new ErrorResult(Messages.CarAlreadyExists);
             }
             return new SuccessResult();
         }
-
-
 
     }
 }

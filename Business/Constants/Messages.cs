@@ -15,7 +15,9 @@ namespace Business.Constant
         public static string CarDailyPriceInvalid = "The car name must be at least 2 characters";
         public static string CarDeleted = "The car deleted";
         public static string CarListed = "Cars listed";
-        internal static string ProductAlreadyExists= "The car with this name already exists";
+        public static string ListedByBrandId= "Cars listed by brand Id";
+        public static string ListedByColorId = "Cars listed by color Id";
+        public static string CarAlreadyExists= "The car with this name already exists";
 
         public static string BrandAdded = "New brand added";
         public static string BrandDeleted = "The brand deleted";
@@ -24,7 +26,7 @@ namespace Business.Constant
 
         public static string ColorAdded = "New color added";
         public static string ColorDeleted = "The color deleted";
-        public static string ColorListed = "Brands listed";
+        public static string ColorListed = "Colors listed";
         public static string ColorListedById = "Colors listed by id number";
 
         public static string RentalAdded = "Rental information added";

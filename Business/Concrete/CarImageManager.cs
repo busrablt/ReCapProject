@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -68,6 +69,18 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(), Messages.CarImagesListed);
 
+        }
+
+        public IDataResult<List<CarImage>> GetImagesByCarId(int CarId)
+        {
+            var result = _carImageDal.GetAll(c => c.CarId == CarId).Any();
+            if (!result)
+            {
+                List<CarImage> carimage = new List<CarImage>();
+                carimage.Add(new CarImage { CarId = CarId, ImagePath = @"\Images\default.png" });
+                return new SuccessDataResult<List<CarImage>>(carimage);
+            }
+            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(p => p.CarId == CarId));
         }
 
         [ValidationAspect(typeof(CarImageValidator))]
